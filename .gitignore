@@ -1,0 +1,18 @@
+# Ignore build outputs and binaries
+*.exe
+*.o
+*.obj
+*.out
+*.a
+*.so
+*.dll
+
+# Ignore build folders
+/build/
+/bin/
+/dist/
+
+# Ignore VS Code and system files
+.vscode/
+.DS_Store
+Thumbs.db
