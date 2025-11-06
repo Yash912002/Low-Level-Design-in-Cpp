@@ -3,6 +3,7 @@ Factory Method : It defines an interface for creating objects but allows
 subclass to decide which class to instantiate.
 Here McDonals/KFC decides which class to instantiate.
 */
+#include "../../../utils/Logger.h"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -15,26 +16,26 @@ public:
 //* Concrete Product 1 ( Veg Burger )
 class BasicBurger : public Burger {
 public:
-  void prepare() const override { cout << "Basic Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Basic Burger is ready."); }
 };
 
 class PremiumBurger : public Burger {
 public:
-  void prepare() const override { cout << "Premium Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Premium Burger is ready."); }
 };
 
 //* Concrete Product 2 ( Nonveg Burger )
 class BasicNonvegBurger : public Burger {
 public:
   void prepare() const override {
-    cout << "Basic Nonveg Burger is ready." << endl;
+    LOG_SUCCESS("Basic Nonveg Burger is ready.");
   }
 };
 
 class PremiumNonvegBurger : public Burger {
 public:
   void prepare() const override {
-    cout << "Premium Nonveg Burger is ready." << endl;
+    LOG_SUCCESS("Premium Nonveg Burger is ready.");
   }
 };
 
@@ -54,7 +55,7 @@ public:
     } else if (type == "premium") {
       return new PremiumBurger();
     } else {
-      cerr << "Invalid burger type" << endl;
+      LOG_ERROR("Invalid burger type");
       return nullptr;
     }
   }
@@ -69,7 +70,7 @@ public:
     } else if (type == "premium") {
       return new PremiumNonvegBurger();
     } else {
-      cerr << "Invalid burger type" << endl;
+      LOG_ERROR("Invalid burger type");
       return nullptr;
     }
   }

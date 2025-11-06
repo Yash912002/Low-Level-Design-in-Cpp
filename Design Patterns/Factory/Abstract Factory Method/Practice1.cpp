@@ -3,6 +3,7 @@ Abstract Factory Method : Provides an interface for creating families of related
 objects without specifying the concrete classes.
 */
 
+#include "../../../utils/Logger.h"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -15,26 +16,26 @@ public:
 //* Concrete Product 1 ( Veg Burger )
 class BasicBurger : public Burger {
 public:
-  void prepare() const override { cout << "Basic Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Basic Burger is ready."); }
 };
 
 class PremiumBurger : public Burger {
 public:
-  void prepare() const override { cout << "Premium Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Premium Burger is ready."); }
 };
 
 //* Concrete Product 2 ( Nonveg Burger )
 class BasicNonvegBurger : public Burger {
 public:
   void prepare() const override {
-    cout << "Basic Nonveg Burger is ready." << endl;
+    LOG_SUCCESS("Basic Nonveg Burger is ready.");
   }
 };
 
 class PremiumNonvegBurger : public Burger {
 public:
   void prepare() const override {
-    cout << "Premium Nonveg Burger is ready." << endl;
+    LOG_SUCCESS("Premium Nonveg Burger is ready.");
   }
 };
 
@@ -45,22 +46,22 @@ public:
 
 class ThumbsUp : public Drinks {
 public:
-  void prepareDrink() const override { cout << "Thumbs Up is ready" << endl; }
+  void prepareDrink() const override { LOG_SUCCESS("Thumbs Up is ready"); }
 };
 
 class SevenUp : public Drinks {
 public:
-  void prepareDrink() const override { cout << "SevenUp is ready" << endl; }
+  void prepareDrink() const override { LOG_SUCCESS("SevenUp is ready"); }
 };
 
 class CocoCola : public Drinks {
 public:
-  void prepareDrink() const override { cout << "CocoCola is ready" << endl; }
+  void prepareDrink() const override { LOG_SUCCESS("CocoCola is ready"); }
 };
 
 class Pepsi : public Drinks {
 public:
-  void prepareDrink() const override { cout << "Pepsi is ready" << endl; }
+  void prepareDrink() const override { LOG_SUCCESS("Pepsi is ready"); }
 };
 
 //* Abstract Factory Method
@@ -80,18 +81,18 @@ public:
     } else if (type == "premium") {
       return new PremiumBurger();
     } else {
-      cerr << "Invalid burger type" << endl;
+      LOG_ERROR("Invalid burger type");
       return nullptr;
     }
   }
-
+  
   Drinks *getDrink(string type) const override {
     if (type == "thumbsup") {
       return new ThumbsUp();
     } else if (type == "sevenup") {
       return new SevenUp();
     } else {
-      cerr << "Invalid drink type" << endl;
+      LOG_ERROR("Invalid drink type");
       return nullptr;
     }
   }
@@ -106,7 +107,7 @@ public:
     } else if (type == "premium") {
       return new PremiumNonvegBurger();
     } else {
-      cerr << "Invalid burger type" << endl;
+      LOG_ERROR("Invalid Burger type");;
       return nullptr;
     }
   }
@@ -117,7 +118,7 @@ public:
     } else if (type == "pepsi") {
       return new Pepsi();
     } else {
-      cerr << "Invalid drink type" << endl;
+      LOG_ERROR("Invalid drink type");
       return nullptr;
     }
   }

@@ -2,6 +2,7 @@
 Simple Factory :- A factory class that decides which concrete class to
 instantiate.
 */
+#include "../../../utils/Logger.h"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,18 +15,16 @@ public:
 
 class BasicBurger : public Burger {
 public:
-  void prepare() const override { cout << "Basic Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Basic Burger is ready."); }
 };
 
 class PremiumBurger : public Burger {
 public:
-  void prepare() const override { cout << "Premium Burger is ready." << endl; }
+  void prepare() const override { LOG_SUCCESS("Premium Burger is ready."); }
 };
 
-// Factory
+//* Simple Factory
 class BurgerFactory {
-  // private:
-  //   Burger* burger;
 public:
   Burger *createBurger(string type) {
     if (type == "basic") {
@@ -33,7 +32,7 @@ public:
     } else if (type == "premium") {
       return new PremiumBurger();
     } else {
-      cerr << "Invalid burger type" << endl;
+      LOG_ERROR("Invalid burger type");
       return nullptr;
     }
   }
